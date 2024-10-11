@@ -1,0 +1,366 @@
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: #d4af37;
+    scroll-behavior: smooth;
+    text-align: center; /* Центрируем весь текст */
+}
+
+/* Стили для навигации */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Центрируем меню */
+    padding: 10px;
+}
+
+.nav-menu a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: #fff;
+}
+
+.nav-menu a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d4af37;
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::before {
+    width: 100%;
+}
+
+/* Стили для кнопок */
+.btn {
+    padding: 10px 20px;
+    background-color: #d4af37;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+/* Стили для секций */
+section {
+    padding: 40px 0;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+}
+
+section:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+section:nth-child(2) {
+    animation-delay: 1s;
+}
+
+section:nth-child(3) {
+    animation-delay: 1.5s;
+}
+
+section:nth-child(4) {
+    animation-delay: 2s;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Стили для галереи */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    max-width: 1200px; /* Ограничиваем ширину галереи */
+    margin: 0 auto; /* Центрируем галерею */
+}
+
+.gallery-grid img {
+    width: 100%;
+    border: 2px solid #d4af37;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+/* Стили для карточек меню */
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Карточки равномерно распределяются по экрану */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-items div {
+    border: 2px solid #d4af37;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-items div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+/* Исправляем высоту и масштабирование для мобильных устройств */
+@media (max-width: 768px) {
+    .menu-items {
+        grid-template-columns: 1fr; /* Один столбец на маленьких экранах */
+    }
+}
+
+.order-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.order-form label {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.order-form input,
+.order-form textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #d4af37;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: #d4af37;
+}
+
+.order-form textarea {
+    height: 100px;
+}
+
+.order-form .btn {
+    padding: 10px;
+    background-color: #d4af37;
+    color: #000;
+    font-size: 1em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.order-form .btn:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+
+.nav-menu a i {
+    margin-right: 8px; /* Отступ между иконкой и текстом */
+    color: #d4af37; /* Цвет иконки */
+    transition: color 0.3s ease; /* Плавный переход цвета при наведении */
+}
+
+.nav-menu a:hover i {
+    color: #fff; /* Цвет иконки при наведении */
+}
+
+
+.contact-info i {
+    text-align: center; /* Центрирование текста */
+    margin-right: 10px;
+    color: #d4af37; /* Золотой цвет для иконок */
+    font-size: 1.2em; /* Размер иконок */
+}
+
+.contact-info p {
+    justify-content: center; /* Центрирование иконок и текста */
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Стили для полей ввода и текстовых областей */
+input[type="text"],
+input[type="tel"],
+textarea,
+input[type="file"] {
+    width: 100%; /* Поля занимают всю ширину */
+    padding: 10px;
+    font-size: 16px; /* Размер текста */
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    box-sizing: border-box; /* Гарантирует, что padding не влияет на ширину */
+    margin-bottom: 15px;
+}
+
+/* Стили для placeholder */
+::placeholder {
+    color: #888;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+
+
+/* Стили для контейнера с вводом телефона */
+.phone-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%; /* Убедитесь, что контейнер имеет ширину */
+}
+
+#phone-number {
+    flex: 1;
+    padding-left: 10px;
+    padding-right: 40px; /* Оставляем место для кнопки справа */
+    height: 40px;
+    font-size: 16px;
+}
+
+/* Стили для выпадающего списка стран */
+.dropdown-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+}
+
+.dropdown-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-list li:hover {
+     background-color: #f0f0f0;
+
+/* Стили для кнопки выбора языка */
+.language-selector {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.language-selector button {
+    background-color: #d4af37;
+    color: #000;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.language-selector button:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Стили для выпадающего списка */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 0;
+}
+
+.dropdown-content li {
+    list-style-type: none;
+}
+
+.dropdown-content li a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-content li a:hover {
+    background-color: #d4af37;
+    color: black;
+    font-weight: bold;
+}
+
+/* Показываем меню, когда оно активно */
+.dropdown-content.show {
+    display: block;
+}

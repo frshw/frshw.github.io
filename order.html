@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRSH.W - Order</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
+    <script src="script.js" defer></script>
+    <style>
+        /* Стили для затемнения фона */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Стили для уведомления */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background-color: #0f0f0f;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 300px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #popup button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #ffaa00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #popup button:hover {
+            background-color: #d48d00;
+        }
+    </style>
+</head>
+<body>
+     <div id="overlay"></div>
+    <div id="popup">
+        <p>This order form is just an example of our work, since our hosting does not support PHP, there will be an error when placing an order.
+To place an order, go to the "Contacts" section</p>
+        <button onclick="closePopup()">Okay</button>
+    </div>
+
+    <script>
+        // показ всплывающего уведомления с анимацией
+        function showPopup() {
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('popup');
+
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+
+            // Запускаем анимацию
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                popup.style.opacity = '1';
+                popup.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 10);
+        }
+
+        // Функция для закрытия уведомления с анимацией
+        function closePopup() {
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('popup');
+
+            // Обратная анимация
+            overlay.style.opacity = '0';
+            popup.style.opacity = '0';
+            popup.style.transform = 'translate(-50%, -50%) scale(0.8)';
+
+            // Убираем элементы 
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                popup.style.display = 'none';
+            }, 500);
+        }
+
+        // Показываем уведомление
+        window.onload = function() {
+            showPopup();
+        };
+    </script>
+    <header>
+        <nav>
+            <div class="logo">
+            </div>
+            <ul class="nav-menu">
+               <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="gallery.html"><i class="fas fa-images"></i>Gallery</a></li>
+                <li><a href="menu.html"><i class="fas fa-utensils "></i>About Us</a></li>
+                <li><a href="order.html"><i class="fas fa-shopping-cart"></i>Order</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="order">
+        <h2>Order</h2>
+        <form action="submit_order.php" method="post" enctype="multipart/form-data" class="order-form">
+            <label for="first-name">Name:</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Enter your name" required>
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Enter your Last Name" required>
+
+<label for="phone">Number:</label>
+<div class="phone-input">
+    <input type="tel" id="phone-number" name="phone_number" placeholder="Enter your number" required>
+    <button type="button" class="dropdown-button"><i class="fas fa-chevron-down"></i></button>
+    <ul class="dropdown-list" id="country-list">
+        <li data-country-code="+994">Azerbaijan (+994)</li>
+        <li data-country-code="+7">Russia (+7)</li>
+        <li data-country-code="+44">United Kingdom (+44)</li>
+        <li data-country-code="+1">USA (+1)</li>
+    </ul>
+</div>
+
+
+
+
+            <label for="order-details">Order:</label>
+            <textarea id="order-details" name="order_details" rows="5" placeholder="Describe your order" required></textarea>
+
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <button type="submit" class="btn"><i class="fas fa-shopping-cart"></i> Place an order</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 frsh.w, Said Rustam</p>
+    </footer>
+</body>
+</html>
