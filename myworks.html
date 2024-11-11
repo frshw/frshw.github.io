@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fresh - My Works</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+    <script src="https://unpkg.com/scrollreveal"></script>
+        <style>
+        
+        /* Стили для затемнения фона */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Стили для уведомления */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background-color: #0f0f0f;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 300px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #popup button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #0290f0;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #popup button:hover {
+            background-color: #0072bf;
+        }
+        
+        /* Контейнер слайдера */
+        .slider-container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        /* Контейнер слайдов */
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        /* Каждый слайд */
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .slider-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* или другой подходящий размер */
+}
+
+.slider-container {
+    width: 80%;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+
+        /* Кнопки навигации */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Стили точек-индикаторов */
+        .dots-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <img src="images/fresh.png" alt="Logo" class="logo">
+    <ul>
+                <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a></li>
+               <li><a href="about.html" class="nav-item"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="news.html" class="nav-item"><i class="fas fa-newspaper"></i> News</a></li>
+                <li><a href="contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contacts</a></li>
+                <li><a href="support.html" class="nav-item"><i class="fas fa-handshake-angle"></i> Support Us</a></li>
+                <li><a href="myworks.html" class="nav-item"><i class="fa-solid fa-briefcase"></i> My Works</a></li>
+    </ul>
+</nav>
+
+
+        </div>
+    </header>
+    <div id="overlay"></div>
+    <div id="popup">
+        <p>Attention! Perhaps my works on the site may be my first or my oldest works.
+So you shouldn’t judge my programming skills based on these examples and works.
+These are just the works that I have left on the device.</p>
+        <button onclick="closePopup()">Okay</button>
+    </div>
+<br><br><br>
+<div class="slider-wrapper">
+    <div class="slider-container" id="slider">
+        <div class="slides">
+            <div class="slide"><img src="images/image1.png" alt="Slide 1"></div>
+            <div class="slide"><img src="images/image2.png" alt="Slide 2"></div>
+        </div>
+        <button class="nav-button prev">&#10094;</button>
+        <button class="nav-button next">&#10095;</button>
+        <div class="dots-container"></div>
+    </div>
+</div>
+
+
+
+
+    <footer>
+        <p>&copy; 2024 fresh. All rights reserved.</p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+         <script>
+        // показ всплывающего уведомления с анимацией
+        function showPopup() {
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('popup');
+
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+
+            // Запускаем анимацию
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                popup.style.opacity = '1';
+                popup.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 10);
+        }
+
+        // Функция для закрытия уведомления с анимацией
+        function closePopup() {
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('popup');
+
+            // Обратная анимация
+            overlay.style.opacity = '0';
+            popup.style.opacity = '0';
+            popup.style.transform = 'translate(-50%, -50%) scale(0.8)';
+
+            // Убираем элементы 
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                popup.style.display = 'none';
+            }, 500);
+        }
+
+        // Показываем уведомление
+        window.onload = function() {
+            showPopup();
+        };
+        
+          const slides = document.querySelector('.slides');
+        const slideElements = document.querySelectorAll('.slide');
+        const totalSlides = slideElements.length;
+        const dotsContainer = document.querySelector('.dots-container');
+        let currentIndex = 0;
+        let autoSlideInterval;
+
+        // Функция перехода к определённому слайду
+        function moveToSlide(index) {
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            updateDots();
+        }
+
+        // Функция для перехода к следующему слайду
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            moveToSlide(currentIndex);
+        }
+
+        // Функция для перехода к предыдущему слайду
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            moveToSlide(currentIndex);
+        }
+
+        // Автоматическая прокрутка
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 3000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Добавляем точки и устанавливаем активную точку
+        function createDots() {
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    moveToSlide(currentIndex);
+                });
+                dotsContainer.appendChild(dot);
+            }
+            updateDots();
+        }
+
+        // Обновление активной точки
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Добавляем события для кнопок и автопрокрутки
+        document.querySelector('.next').addEventListener('click', nextSlide);
+        document.querySelector('.prev').addEventListener('click', prevSlide);
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
+
+        // Реализация прокрутки мышью
+        let startX;
+        slides.addEventListener('mousedown', (e) => startX = e.clientX);
+        slides.addEventListener('mouseup', (e) => {
+            if (e.clientX - startX > 50) prevSlide();
+            if (startX - e.clientX > 50) nextSlide();
+        });
+
+        // Инициализация
+        createDots();
+        startAutoSlide();
+    </script>
+</body>
+</html>
